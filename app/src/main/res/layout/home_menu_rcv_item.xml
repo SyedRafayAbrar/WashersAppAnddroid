@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:padding="4dp"
+        android:layout_margin="3dp"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:id="@+id/mcv"
+            android:layout_height="160dp"
+            app:cardCornerRadius="18dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
+
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/download"
+                    android:id="@+id/menu_img" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#99000000"
+                    android:layout_centerInParent="true">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="Fab Car Wash"
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+
+                        android:textStyle="bold"
+                        android:textSize="22sp"
+                        android:id="@+id/menu_name" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_map_24"
+            app:layout_constraintTop_toBottomOf="@id/mcv"
+            app:layout_constraintStart_toStartOf="@id/mcv"
+            android:layout_marginTop="6dp"
+            android:id="@+id/map_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Gulshan e iqbal karachi "
+            android:textSize="16sp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:layout_marginEnd="3dp"
+            android:ellipsize="end"
+            android:textColor="#FA919090"
+            android:id="@+id/location"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/map_icon"
+            app:layout_constraintTop_toTopOf="@id/map_icon" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_access_time_24"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            app:layout_constraintStart_toStartOf="@id/map_icon"
+            android:layout_marginTop="4dp"
+            android:id="@+id/clock" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="12:00 pm - 9:00 am "
+            android:textSize="16sp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:layout_marginEnd="3dp"
+            android:ellipsize="end"
+            android:textColor="#FA919090"
+            android:id="@+id/time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/clock"
+            app:layout_constraintTop_toTopOf="@id/clock" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_location_on_24"
+            app:layout_constraintTop_toBottomOf="@id/clock"
+            app:layout_constraintStart_toStartOf="@id/clock"
+            android:layout_marginTop="4dp"
+            android:id="@+id/dist_icon" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="5 Km "
+            android:textSize="16sp"
+            android:layout_marginStart="4dp"
+            android:maxLines="1"
+            android:layout_marginEnd="3dp"
+            android:ellipsize="end"
+            android:textColor="#FA919090"
+            android:id="@+id/distance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dist_icon"
+            app:layout_constraintTop_toTopOf="@id/dist_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

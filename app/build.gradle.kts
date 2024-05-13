@@ -1,16 +1,20 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+
 }
 
 android {
     namespace = "com.koraspond.washershub"
-    compileSdk = 33
-
+    compileSdk = 34
+    buildFeatures {
+        dataBinding = true
+    }
     defaultConfig {
         applicationId = "com.koraspond.washershub"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
