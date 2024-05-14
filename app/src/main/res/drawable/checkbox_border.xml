@@ -1,0 +1,22 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer Border -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/lighht_blue" /> <!-- Change @color/outer_border_color to your desired outer border color -->
+            <corners android:radius="4dp" /> <!-- Adjust radius as per your design -->
+        </shape>
+    </item>
+    <!-- Inner Border -->
+    <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/lighht_blue" /> <!-- Change @color/inner_border_color to your desired inner border color -->
+            <corners android:radius="2dp" /> <!-- Adjust radius as per your design -->
+        </shape>
+    </item>
+</layer-list>

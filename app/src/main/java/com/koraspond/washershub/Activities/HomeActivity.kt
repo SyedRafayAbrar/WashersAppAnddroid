@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.koraspond.washershub.Adapters.HomeMenuAdapter
+import com.koraspond.washershub.Fragments.CategoriesFragment
+import com.koraspond.washershub.Fragments.LoginFragment
 import com.koraspond.washershub.R
 import com.koraspond.washershub.databinding.ActivityHomeBinding
 
@@ -21,6 +23,12 @@ class HomeActivity : AppCompatActivity() {
 
         binding.catRcv.layoutManager = LinearLayoutManager(this@HomeActivity)
         binding.catRcv.adapter = HomeMenuAdapter(this@HomeActivity)
+
+        binding.filter.setOnClickListener {
+            supportFragmentManager.
+            beginTransaction().setCustomAnimations(android.R.anim.slide_in_left,android.R.anim.slide_out_right)
+                .addToBackStack(null) .replace(R.id.root, CategoriesFragment()).commit()
+        }
 
         setAreaSpinner()
         setSortSpinner()

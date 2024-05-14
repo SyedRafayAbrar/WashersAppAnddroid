@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_margin="3dp"
+        android:padding="3dp"
+
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="wrap_content"
+            app:strokeColor="@color/lighht_blue"
+            android:layout_margin="4dp"
+            app:cardCornerRadius="32dp"
+            android:backgroundTint="#999AD2EC">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="80dp"
+                    app:cardCornerRadius="42dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_margin="8dp"
+                    android:id="@+id/ci"
+                    android:layout_height="80dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/download"
+                        android:scaleType="centerCrop"
+                        android:id="@+id/cat_img" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/cat_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="16dp"
+
+                    android:ellipsize="end"
+                    android:maxEms="22"
+                    android:maxLines="2"
+                    android:text="Dust cleaning"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/check_box"
+                    app:layout_constraintStart_toEndOf="@id/ci"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+
+                    android:text="category description"
+                    app:layout_constraintEnd_toStartOf="@+id/check_box"
+                    app:layout_constraintStart_toStartOf="@id/cat_title"
+                    app:layout_constraintTop_toBottomOf="@id/cat_title" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:id="@+id/check_box"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:cardCornerRadius="4dp"
+                    android:layout_marginEnd="6dp"
+                    app:strokeWidth="2dp"
+                    app:strokeColor="@color/lighht_blue">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_margin="4dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/icons_tick"
+                            android:id="@+id/tick_img"
+                            android:layout_centerInParent="true" />
+
+                    </RelativeLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

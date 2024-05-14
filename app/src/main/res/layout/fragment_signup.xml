@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:text="SignUp"
         android:layout_marginTop="12dp"
-        android:textColor="#575656"
+        android:textColor="#5D5D5D"
         app:layout_constraintTop_toBottomOf="@id/vendor_signup"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="22sp"
@@ -43,7 +43,7 @@
         android:layout_marginEnd="26dp"
         android:layout_marginStart="26dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/s"
+
         android:textColor="@color/black"
         android:hint="User Name"
         android:paddingStart="12dp"
@@ -61,7 +61,7 @@
         android:layout_marginEnd="26dp"
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/s"
+
         android:textColor="@color/black"
         android:hint="Email"
         android:paddingStart="12dp"
@@ -79,7 +79,7 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
         android:inputType="phone"
-        android:background="@drawable/s"
+
         android:textColor="@color/black"
         android:hint="Contact Number"
         android:paddingStart="12dp"
@@ -97,7 +97,7 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
         android:inputType="textPassword"
-        android:background="@drawable/s"
+
         android:textColor="@color/black"
         android:hint="New Password"
         android:paddingStart="12dp"
@@ -110,7 +110,7 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="26dp"
-        android:background="@drawable/s"
+
         android:hint="Confirm Password"
         android:inputType="textPassword"
         android:paddingStart="12dp"
