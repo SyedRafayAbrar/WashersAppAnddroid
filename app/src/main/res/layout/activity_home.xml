@@ -7,10 +7,17 @@
     <data>
 
     </data>
+    <androidx.drawerlayout.widget.DrawerLayout
+
+        android:id="@+id/my_drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:id="@+id/root"
+        android:id="@+id/rootj"
         android:background="@color/white"
         android:layout_height="match_parent"
         tools:context=".Activities.HomeActivity">
@@ -86,4 +93,15 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:id="@+id/nav"
+            android:background="@color/white"
+            android:backgroundTint="@color/white"
+            app:headerLayout="@layout/header_layout"
+            app:menu="@menu/menu" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

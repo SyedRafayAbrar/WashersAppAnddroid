@@ -25,10 +25,11 @@
             app:strokeColor="@color/lighht_blue"
             android:layout_margin="4dp"
             app:cardCornerRadius="32dp"
-            android:backgroundTint="#999AD2EC">
+>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:id="@+id/ct"
                 android:layout_height="match_parent">
 
                 <androidx.cardview.widget.CardView
@@ -95,12 +96,16 @@
                         android:layout_height="match_parent">
 
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_margin="4dp"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/icons_tick"
+                            android:visibility="gone"
                             android:id="@+id/tick_img"
-                            android:layout_centerInParent="true" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_marginStart="4dp"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginBottom="4dp"
+                            android:src="@drawable/icons_tick" />
 
                     </RelativeLayout>
                 </com.google.android.material.card.MaterialCardView>

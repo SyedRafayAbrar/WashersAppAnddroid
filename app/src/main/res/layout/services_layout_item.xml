@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_margin="3dp"
+    android:padding="2dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Car Half Wash"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="6dp"
+
+        android:maxHeight="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#5D5D5D"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:id="@+id/service_title"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="2dp"
+        android:text="Rs.190"
+        android:id="@+id/price"
+        app:layout_constraintEnd_toStartOf="@+id/check_box"
+        app:layout_constraintStart_toEndOf="@id/service_title"
+        app:layout_constraintTop_toTopOf="@id/service_title" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/check_box"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="6dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/service_title"
+        app:strokeColor="@color/lighht_blue"
+        app:strokeWidth="2dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/tick_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="4dp"
+                android:visibility="gone"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="4dp"
+                android:src="@drawable/icons_tick"
+                app:tint="@color/lighht_blue" />
+
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+     android:background="#5D5D5D"
+    app:layout_constraintTop_toBottomOf="@id/service_title"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="4dp"
+    app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".Activities.RateActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+
+            android:id="@+id/top_l"
+            android:background="@color/lighht_blue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:id="@+id/back_btn"
+                android:layout_centerVertical="true"
+                android:src="@drawable/baseline_arrow_back_ios_24"
+                app:tint="@color/white" />
+        </RelativeLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:minHeight="150dp"
+            android:id="@+id/cancel_cv"
+            app:strokeColor="#5D5D5D"
+            app:layout_constraintTop_toBottomOf="@id/top_l"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginTop="14dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="12dp"
+                    android:paddingTop="12dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#5D5D5D"
+                    android:background="@android:color/transparent"
+                    android:inputType="textMultiLine"
+                    android:singleLine="false"
+                    android:hint="Review"
+                    android:id="@+id/cancel_et" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Select Rating"
+            app:layout_constraintTop_toBottomOf="@id/cancel_cv"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="20dp"
+            android:id="@+id/sr_head" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/RatingBar"
+            android:numStars="5"
+            app:layout_constraintStart_toStartOf="@id/sr_head"
+            app:layout_constraintTop_toBottomOf="@id/sr_head"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="12dp"
+            android:rating="0"
+            android:id="@+id/rating_dialog" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/cancel_cv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginTop="6dp"
+            android:backgroundTint="@color/lighht_blue"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:id="@+id/cancel_btn" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

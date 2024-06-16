@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="4dp"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="12dp"
+        app:cardCornerRadius="42dp"
+        android:id="@+id/img_cv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/images"
+            android:id="@+id/profile"/>
+
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Syed umair"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="12dp"
+        android:textSize="18sp"
+        android:id="@+id/name"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/img_cv"
+        app:layout_constraintStart_toEndOf="@id/img_cv"/>
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+       app:layout_constraintStart_toStartOf="@id/name"
+        app:layout_constraintTop_toBottomOf="@id/name"
+        android:text="john@gmail.com"
+        android:layout_marginTop="4dp"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="30dp"
+        app:cardCornerRadius="32dp"
+        android:id="@+id/active_img"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="22dp"
+        >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/pgreen"/>
+    </androidx.cardview.widget.CardView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/active_img"
+        app:layout_constraintStart_toEndOf="@id/active_img"
+        android:text="Active"
+        app:layout_constraintBottom_toBottomOf="@id/active_img"
+        android:layout_marginStart="6dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

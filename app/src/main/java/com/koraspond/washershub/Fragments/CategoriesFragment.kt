@@ -32,4 +32,5 @@ lateinit var recyclerView: RecyclerView
         recyclerView.adapter = CategoriesFilterAdapter(requireContext())
     }
 
+
 }

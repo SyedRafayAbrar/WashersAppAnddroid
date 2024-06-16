@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            tools:context=".VendorServicesList">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:id="@+id/top_bar"
+                android:background="@color/lighht_blue"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:id="@+id/back_btn"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/baseline_arrow_back_ios_24"
+                    app:tint="@color/white" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Service"
+                android:textColor="#5D5D5D"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/top_bar"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:id="@+id/title" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Service Name"
+
+                android:maxLines="1"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                android:id="@+id/service_name"
+                android:textColorHint="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="12dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Duration to complete"
+                app:layout_constraintTop_toBottomOf="@id/service_name"
+                android:id="@+id/dur_tv"
+
+                android:maxLines="1"
+                android:textColorHint="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="5dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Capactiy Per duration"
+                app:layout_constraintTop_toBottomOf="@id/dur_tv"
+                android:id="@+id/cap_tv"
+                android:maxLines="1"
+                android:textColorHint="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="5dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Service Description"
+                app:layout_constraintTop_toBottomOf="@id/cap_tv"
+                android:id="@+id/desc_tv"
+                android:textColorHint="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="5dp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/desc_tv"
+                app:layout_constraintTop_toBottomOf="@id/desc_tv"
+                android:text="Select Categories"
+                android:textColor="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold"
+                android:id="@+id/sel" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/sel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:id="@+id/cat_spinner" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/desc_tv"
+                app:layout_constraintTop_toBottomOf="@id/cat_spinner"
+                android:text="Add Service Variation"
+                android:textColor="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:textStyle="bold"
+                android:id="@+id/add_var" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_margin="4dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/add_var"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/var_rcv" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@id/var_rcv"
+                app:layout_constraintTop_toBottomOf="@id/var_rcv"
+                android:text="Note From  Admin"
+                android:textColor="#5D5D5D"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+
+                android:id="@+id/note_admin" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="4dp"
+                android:text="You will be charged 10% of this amount as a commission."
+                android:textColor="#5D5D5D"
+                android:id="@+id/f_tv"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/note_admin"
+                app:layout_constraintTop_toBottomOf="@id/note_admin" />
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/f_tv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="6dp"
+                android:backgroundTint="@color/lighht_blue"
+                android:text="Create Service"
+                app:cornerRadius="12dp"
+                android:id="@+id/creat_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>
