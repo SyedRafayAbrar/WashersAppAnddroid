@@ -13,19 +13,17 @@ import com.koraspond.washershub.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class LoginViewModel(var loginRepository: LoginRepository):ViewModel() {
-     var isloading: MutableLiveData<String> = loginRepository.isLoading
+class LoginViewModel(var loginRepository: LoginRepository) : ViewModel() {
+    var isloading: MutableLiveData<String> = loginRepository.isLoading
 
 
-
-    fun getSignup(signupRequestModel: SignupRequestModel) : LiveData<Resource<SignupModel>?>?{
-        var liveData:LiveData<Resource<SignupModel>?>? = null
-            viewModelScope.launch(Dispatchers.IO) {
-               liveData = loginRepository.attemptSignup(signupRequestModel)
-            }
+    fun getSignup(signupRequestModel: SignupRequestModel): LiveData<Resource<SignupModel>?>? {
+        var liveData: LiveData<Resource<SignupModel>?>? = null
+        viewModelScope.launch(Dispatchers.IO) {
+            liveData = loginRepository.attemptSignup(signupRequestModel)
+        }
         return liveData
     }
-
 
 
 }

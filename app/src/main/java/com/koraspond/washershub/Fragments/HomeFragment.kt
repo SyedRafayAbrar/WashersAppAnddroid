@@ -20,7 +20,7 @@
         override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-        ): View? {
+        ): View {
             binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
             // Inflate the layout for this fragment
             return binding.root
@@ -51,7 +51,7 @@
             val arrayAdapter: ArrayAdapter<String> =
                 ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, sort)
             arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.categoriesSpinner.setAdapter(arrayAdapter)
+            binding.categoriesSpinner.adapter = arrayAdapter
         }
         fun setAreaSpinner(){
             var areas:ArrayList<String> = ArrayList<String>()
@@ -61,7 +61,7 @@
             val arrayAdapter: ArrayAdapter<String> =
                 ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, areas)
             arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            binding.areaSpinner.setAdapter(arrayAdapter)
+            binding.areaSpinner.adapter = arrayAdapter
 
 
         }

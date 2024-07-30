@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.koraspond.washershub.R
 
 
-public class CategoriesFilterAdapter(var context: Context) :
+class CategoriesFilterAdapter(var context: Context) :
     RecyclerView.Adapter<CategoriesFilterAdapter.GroupViewHolder>() {
-    public class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             var tickImg:ImageView
             var ct:ConstraintLayout
             init {

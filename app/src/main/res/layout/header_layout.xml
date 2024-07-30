@@ -29,6 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Syed umair"
+
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="4dp"
         android:layout_marginStart="12dp"
@@ -38,6 +39,7 @@
         app:layout_constraintTop_toTopOf="@id/img_cv"
         app:layout_constraintStart_toEndOf="@id/img_cv"/>
     <TextView
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
        app:layout_constraintStart_toStartOf="@id/name"

@@ -8,6 +8,7 @@ import com.koraspond.washershub.Resource
 import com.pegasus.pakbiz.network.Api
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
@@ -47,10 +48,8 @@ class LoginRepository {
         }
 
         val body: RequestBody
-        body = RequestBody.create(
-            "application/json; charset=utf-8".toMediaTypeOrNull(),
-            jsonObject.toString()
-        )
+        body = jsonObject.toString()
+            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
 
 //        Api.client.userSignup(body).enqueue(object : retrofit2.Callback<SignupModel> {
 //            override fun onResponse(call: Call<SignupModel>, response: Response<SignupModel>) {

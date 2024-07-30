@@ -71,6 +71,7 @@
                         android:layout_toEndOf="@id/s_head"
                         android:text="Pending"
                         android:layout_marginBottom="6dp"
+                        android:id="@+id/status"
 
                         android:layout_marginStart="6dp"
                         android:textSize="17sp"

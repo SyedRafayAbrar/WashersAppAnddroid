@@ -40,7 +40,7 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Monthly"
+            android:text="Yearly"
             app:layout_constraintTop_toBottomOf="@id/top_bar"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="6dp"

@@ -6,34 +6,38 @@ import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.koraspond.washershub.Activities.HistoryDetail
+import com.koraspond.washershub.Models.getReview.Data
 import com.koraspond.washershub.R
 import com.koraspond.washershub.Utils.clickInterface
 
 
-public class ReviewsAdapter() :
+class ReviewsAdapter(var list:ArrayList<Data>) :
     RecyclerView.Adapter<ReviewsAdapter.GroupViewHolder>() {
-    public class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        var reviewsTv =itemView.findViewById<TextView>(R.id.review_tv)
+        var rat_bar =itemView.findViewById<RatingBar>(R.id.rat_bar)
+
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.reviews_view_rcv_item, parent, false)
+        var view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.reviews_view_rcv_item, parent, false)
         return GroupViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return list.size
     }
 
     override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
+        holder.reviewsTv .text = list.get(position).review
+        holder.rat_bar.rating = list.get(position).rating.toFloat()
 
-        holder.itemView.setOnClickListener {
-          var intent = Intent(holder.itemView.context,HistoryDetail::class.java)
-            holder.itemView.context.startActivity(intent)
-        }
 
     }
 }

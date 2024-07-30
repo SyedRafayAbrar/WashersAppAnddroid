@@ -15,6 +15,10 @@ import com.koraspond.washershub.databinding.ActivityEarningBinding
 class Earning : AppCompatActivity() {
 
     lateinit var binding:ActivityEarningBinding
+    var corder =0
+    var tc = "0"
+    var tearn = "0"
+    var fearn ="0"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_earning)
@@ -24,6 +28,21 @@ class Earning : AppCompatActivity() {
         binding.backBtn.setOnClickListener {
             finish()
         }
+
+         corder =intent.getIntExtra("customer_order",0)
+        tc = intent.getStringExtra("total_commission").toString()
+        tearn = intent.getStringExtra("tearn").toString()
+        fearn = intent.getStringExtra("final_earning").toString()
+
+        binding.earning.text = tearn
+        binding.commision.text = corder.toString()
+        binding.commisionTbp.text = tc
+        binding.commEarning.text = fearn
+        binding.month.text = intent.getStringExtra("name")+
+                " "+"Earnings"
+
+
+
 
         setUnderline(binding.earning,binding.earning.text.toString())
         setUnderline(binding.co,binding.co.text.toString())

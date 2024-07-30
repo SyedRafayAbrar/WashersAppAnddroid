@@ -59,7 +59,7 @@ class CreateVendorOrder : AppCompatActivity() {
         val arrayAdapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, areas)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.vehSpinner.setAdapter(arrayAdapter)
+        binding.vehSpinner.adapter = arrayAdapter
 
 
     }

@@ -16,5 +16,6 @@ data class Data(
     val timeslots_duration: Int,
     val user: Int,
     val vendor_capacity: Int,
-    val vendor_category: Int
+    val vendor_category: Int,
+    val average_rating:String?
 )

@@ -20,14 +20,18 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/review_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="It was a good experience for me vendor was good ,It was a good experience for me vendor was good, It was a good experience for me vendor was good."
-                android:layout_margin="6dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="6dp"
                 android:padding="4dp"
-                android:textColor="#5D5D5D"/>
+                android:text="It was a good experience for me vendor was good ,It was a good experience for me vendor was good, It was a good experience for me vendor was good."
+                android:textColor="#5D5D5D" />
             <RatingBar
                 android:id="@+id/rat_bar"
                 style="@style/Widget.AppCompat.RatingBar.Indicator"

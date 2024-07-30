@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.button.MaterialButton
 import com.koraspond.washershub.Activities.HomeActivity
+import com.koraspond.washershub.Activities.SignupActivity
+
 import com.koraspond.washershub.Activities.VendorHome
 import com.koraspond.washershub.Models.SignupModel.SignupModel
 import com.koraspond.washershub.Models.SignupModel.SignupRequestModel
@@ -24,6 +26,7 @@ import com.koraspond.washershub.databinding.FragmentSignupBinding
 import com.pegasus.pakbiz.network.Api
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Response
@@ -37,7 +40,7 @@ lateinit var binding:FragmentSignupBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         binding = FragmentSignupBinding.inflate(inflater,container,false)
 
@@ -84,12 +87,11 @@ lateinit var binding:FragmentSignupBinding
                                             put("password", signupRequestModel.password)
                                             put("contact_number", signupRequestModel.contactNumber)
                                             put("role", signupRequestModel.role)
+
                                         }
                                         val body: RequestBody
-                                        body = RequestBody.create(
-                                            "application/json; charset=utf-8".toMediaTypeOrNull(),
-                                            jsonObject.toString()
-                                        )
+                                        body = jsonObject.toString()
+                                            .toRequestBody("application/json; charset=utf-8".toMediaTypeOrNull())
                                         progress.show()
 
                                         Api.client.userSignup("Basic 8db88ff86fb9b0a4f4ff1e204b6ace5c04ad6fbad96617fc558819a2dd5c23fe",body).enqueue(object : retrofit2.Callback<SignupModel> {
@@ -103,6 +105,7 @@ lateinit var binding:FragmentSignupBinding
                                                         userInfoPreference.setStr("name",response.body()!!.data.user_name)
                                                         userInfoPreference.setStr("email",response.body()!!.data.email)
                                                         userInfoPreference.setStr("token",response.body()!!.data.token)
+                                                        userInfoPreference.setStr("role","c")
                                                         var  intent = Intent(requireContext(),
                                                             HomeActivity::class.java)
                                                         startActivity(intent)
@@ -134,29 +137,29 @@ lateinit var binding:FragmentSignupBinding
                                     }
                                 }
                                 else{
-                                    binding.cPassword.setError("please enter password again")
+                                    binding.cPassword.error = "please enter password again"
                                 }
                             }
                             else{
-                                binding.nPassword.setError("Please enter password")
+                                binding.nPassword.error = "Please enter password"
 
                             }
                         }
                         else{
-                            binding.contactNo.setError("Please enter contact number")
+                            binding.contactNo.error = "Please enter contact number"
                         }
                     }
                     else{
-                        binding.emailEt.setError("Please enter email")
+                    binding.emailEt.error = "Please enter email"
                     }
                 }
             else{
                     Toast.makeText(context, "please enter user name", Toast.LENGTH_SHORT).show()
-                    binding.nameEt.setError("Please enter user name")
+                binding.nameEt.error = "Please enter user name"
             }
         }
         signupVendor.setOnClickListener {
-            var intent = Intent(requireContext(),VendorHome::class.java)
+            var intent = Intent(requireContext(), SignupActivity::class.java)
             requireContext().startActivity(intent)
         }
     }

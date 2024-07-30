@@ -1,46 +1,30 @@
 package com.koraspond.washershub.Adapters
 
-import android.content.Context
-import android.content.Intent
-import android.opengl.Visibility
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.koraspond.washershub.Activities.HistoryDetail
-import com.koraspond.washershub.Activities.VendorORderDetails
-import com.koraspond.washershub.R
-import com.koraspond.washershub.Utils.clickInterface
+import com.koraspond.washershub.Models.getVendServices.Data
+import com.koraspond.washershub.databinding.ServicesItemLayoutBinding
 
 
-public class VendServiceListAdapter() :
+class VendServiceListAdapter(var serviceList:ArrayList<Data>) :
     RecyclerView.Adapter<VendServiceListAdapter.GroupViewHolder>() {
-    public class GroupViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
+    class GroupViewHolder(var binding: ServicesItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(get: Data) {
+            binding.serviceTitle.text = get.service_name
+            binding.servDesc.text = get.service_description
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.services_item_layout, parent, false)
-        return GroupViewHolder(view)
+        val binding = ServicesItemLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return GroupViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
-        return 2
+        return serviceList.size
     }
 
-    override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
-
-        holder.itemView.setOnClickListener {
-//            if(from==1) {
-//                var intent = Intent(holder.itemView.context, HistoryDetail::class.java)
-//                holder.itemView.context.startActivity(intent)
-//            }
-//            else{
-//                var intent = Intent(holder.itemView.context, VendorORderDetails::class.java)
-//                holder.itemView.context.startActivity(intent)
-//            }
-        }
-
-    }
+    override fun onBindViewHolder(holder: GroupViewHolder, position: Int)  = holder.bind(serviceList.get(position))
 }

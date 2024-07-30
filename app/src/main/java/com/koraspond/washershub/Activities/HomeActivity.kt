@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -23,9 +24,8 @@ import com.google.android.material.navigation.NavigationView
 import com.koraspond.washershub.Adapters.HomeMenuAdapter
 import com.koraspond.washershub.Models.getVendorsModel.Data
 import com.koraspond.washershub.R
-import com.koraspond.washershub.Repositories.VendorRepo
+import com.koraspond.washershub.Repositories.CustomerRepos
 import com.koraspond.washershub.Utils.UserInfoPreference
-import com.koraspond.washershub.Utils.clickInterface
 import com.koraspond.washershub.Utils.clickInterfaceVendor
 import com.koraspond.washershub.ViewModel.VendorViewModel
 import com.koraspond.washershub.ViewModel.VendorViewModelFactory
@@ -43,8 +43,22 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home)
         list = ArrayList()
 
-        val vendorRepo = VendorRepo.getInstance()
-        viewModel = ViewModelProvider(this, VendorViewModelFactory(vendorRepo))
+
+
+        val headerView = binding.nav.getHeaderView(0)
+        val navHeaderName = headerView.findViewById<TextView>(R.id.name)
+        val navHeaderEmail = headerView.findViewById<TextView>(R.id.email)
+
+
+
+        // Replace with actual user data
+
+
+        navHeaderName.text = UserInfoPreference(this@HomeActivity).getStr("name")
+        navHeaderEmail.text = UserInfoPreference(this@HomeActivity).getStr("email")
+
+        val customerRepos = CustomerRepos.getInstance()
+        viewModel = ViewModelProvider(this, VendorViewModelFactory(customerRepos))
             .get(VendorViewModel::class.java)
         val progress = ProgressDialog(this)
 
@@ -122,7 +136,7 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
         val arrayAdapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, sort)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.categoriesSpinner.setAdapter(arrayAdapter)
+        binding.categoriesSpinner.adapter = arrayAdapter
     }
 
     fun setAreaSpinner() {
@@ -133,7 +147,7 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
         val arrayAdapter: ArrayAdapter<String> =
             ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, areas)
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.areaSpinner.setAdapter(arrayAdapter)
+        binding.areaSpinner.adapter = arrayAdapter
 
         binding.nav.setNavigationItemSelectedListener(this)
         binding.nav.menu.findItem(R.id.home).isChecked = true
@@ -151,6 +165,13 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
             R.id.history -> {
                 val intent = Intent(this@HomeActivity, HistoryActivity::class.java)
                 startActivity(intent)
+                binding.myDrawerLayout.closeDrawer(Gravity.LEFT)
+            }
+            R.id.logout -> {
+                val intent = Intent(this@HomeActivity, WelcomeActivity::class.java)
+                startActivity(intent)
+                UserInfoPreference(this@HomeActivity).removeAllPrefData()
+                finish()
                 binding.myDrawerLayout.closeDrawer(Gravity.LEFT)
             }
         }

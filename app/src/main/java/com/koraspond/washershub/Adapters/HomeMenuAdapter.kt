@@ -10,7 +10,7 @@ import com.koraspond.washershub.Utils.clickInterface
 import com.koraspond.washershub.Utils.clickInterfaceVendor
 import com.koraspond.washershub.databinding.HomeMenuRcvItemBinding
 
-public class HomeMenuAdapter(
+class HomeMenuAdapter(
     var context: Context,
     var list: ArrayList<Data>,
     var inter: clickInterfaceVendor,
@@ -18,7 +18,7 @@ public class HomeMenuAdapter(
     var userLng: Double
 ) : RecyclerView.Adapter<HomeMenuAdapter.GroupViewHolder>() {
 
-    public class GroupViewHolder(var binding: HomeMenuRcvItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class GroupViewHolder(var binding: HomeMenuRcvItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(get: Data, inter: clickInterfaceVendor, userLat: Double, userLng: Double) {
             binding.menuName.text = get.shop_name.toString()
             binding.location.text = get.address
