@@ -15,10 +15,16 @@ import com.koraspond.washershub.Resource
 class VendorViewModel(private val customerRepos: CustomerRepos) : ViewModel() {
     val isLoading: LiveData<String> = customerRepos.isLoading
 
-    fun getVendors(token: String, area: Int, cat: Int): LiveData<Resource<GetAllVendors>?> {
-        return customerRepos.getVendors(area, cat, token)
-    }
+//    fun getVendors(token: String, area: Int, cat: Int,page:Int): LiveData<Resource<GetAllVendors>?> {
+//        return customerRepos.getVendors(area, cat, token,page)
+//    }
+fun getVendors(token: String, area: Int, cat: Int, page: Int): LiveData<Resource<GetAllVendors>?> {
+    return customerRepos.getVendors(area, cat, token, page)
+}
 
+    fun getNearbyVendors(token: String, area: Int, cat: Int, page: Int, lat: Double, lng: Double): LiveData<Resource<GetAllVendors>?> {
+        return customerRepos.getVendors(area, cat, token, page, 1, lat, lng)
+    }
     fun getVendorDetail(token: String, id:Int): LiveData<Resource<VendorDetails>?> {
         return customerRepos.getVendorsDetails(token,id)
     }

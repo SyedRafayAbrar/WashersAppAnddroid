@@ -1,13 +1,8 @@
 package com.koraspond.washershub.Models.getVendorsModel
 
 data class Data(
-    val address: String,
-    val avatar: Any,
-    val end_time: String,
-    val id: Int,
-    val lat: Double,
-    val long: Double,
-    val shop_name: String,
-    val start_time: String,
-    val vendor_category: VendorCategory
+    val current_page: String,
+    val items: List<Item>?,
+    val total_items: Int,
+    val total_pages: Int
 )

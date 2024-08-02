@@ -38,16 +38,21 @@ class CustomerRepos private constructor() {
             instance ?: CustomerRepos().also { instance = it }
         }
     }
-
-    fun getVendors(area: Int, cat: Int, token: String): LiveData<Resource<GetAllVendors>?> {
-        _userData =MutableLiveData<Resource<GetAllVendors>?>()
+    fun getVendors(area: Int, cat: Int, token: String, page: Int, isNearby: Int = 0, lat: Double? = null, lng: Double? = null): LiveData<Resource<GetAllVendors>?> {
+        _userData = MutableLiveData<Resource<GetAllVendors>?>()
         if (area == -1) {
             return _userData
         }
 
         isLoading.postValue("true")
 
-        Api.client.getVendors("token "+token, area, cat).enqueue(object : Callback<GetAllVendors> {
+        val call: Call<GetAllVendors> = if (isNearby == 1 && lat != null && lng != null) {
+            Api.client.getVendors("token $token", area, cat, page, lat, lng, isNearby)
+        } else {
+            Api.client.getVendors("token $token", area, cat, page)
+        }
+
+        call.enqueue(object : Callback<GetAllVendors> {
             override fun onResponse(call: Call<GetAllVendors>, response: Response<GetAllVendors>) {
                 isLoading.postValue("false")
                 if (response.isSuccessful) {
@@ -66,6 +71,33 @@ class CustomerRepos private constructor() {
 
         return _userData
     }
+//    fun getVendors(area: Int, cat: Int, token: String,page: Int): LiveData<Resource<GetAllVendors>?> {
+//        _userData =MutableLiveData<Resource<GetAllVendors>?>()
+//        if (area == -1) {
+//            return _userData
+//        }
+//
+//        isLoading.postValue("true")
+//
+//        Api.client.getVendors("token "+token, area, cat,page).enqueue(object : Callback<GetAllVendors> {
+//            override fun onResponse(call: Call<GetAllVendors>, response: Response<GetAllVendors>) {
+//                isLoading.postValue("false")
+//                if (response.isSuccessful) {
+//                    val allVendors = response.body()!!
+//                    _userData.postValue(Resource.success(allVendors))
+//                } else {
+//                    _userData.postValue(Resource.error(null, "Error: ${response.code()}"))
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<GetAllVendors>, t: Throwable) {
+//                isLoading.postValue("false")
+//                _userData.postValue(Resource.error(null, t.message ?: "Unknown error"))
+//            }
+//        })
+//
+//        return _userData
+//    }
     fun getVendorsDetails(token: String,id:Int): LiveData<Resource<VendorDetails>?> {
         vendDetails =  MutableLiveData<Resource<VendorDetails>?>()
         if (id == -1) {

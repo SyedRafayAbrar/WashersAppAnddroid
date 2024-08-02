@@ -49,7 +49,11 @@ public interface ApiInterface {
     Call<LoginModel> login(@Header("Authorization") String token,@Body  RequestBody requestBody);
 
     @GET("vendors")
-    Call<GetAllVendors> getVendors(@Header("Authorization") String token, @Query("area")  int area,@Query("category")  int category);
+    Call<GetAllVendors> getVendors(@Header("Authorization") String token, @Query("area")  int area,@Query("category")  int category,@Query("page") int page);
+
+    @GET("vendors")
+    Call<GetAllVendors> getVendors(@Header("Authorization") String token, @Query("area")  int area,@Query("category")  int category,@Query("page") int page,@Query("lat") Double lat,@Query("long") Double lng,@Query("is_nearby") int isnearby);
+
     @GET("get_vendor")
     Call<VendorDetails> getVendorDetail(@Header("Authorization") String token, @Query("vendor_id")  int vendor_id);
     @GET("get_timeslots")
@@ -105,6 +109,9 @@ public interface ApiInterface {
 
     @GET("get_ratings")
     Call<GetReviews> getReviews(@Header("Authorization") String token, @Query("vendor")  String vendor_id);
+
+    @GET("admin/get_cities")
+    Call<GetCities> getAllCities(@Header("Authorization") String token, @Query("country_id")  int country_id);
 
 
 

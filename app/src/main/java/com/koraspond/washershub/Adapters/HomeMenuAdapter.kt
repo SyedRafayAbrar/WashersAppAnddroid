@@ -5,21 +5,20 @@ import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.koraspond.washershub.Models.getVendorsModel.Data
-import com.koraspond.washershub.Utils.clickInterface
+import com.koraspond.washershub.Models.getVendorsModel.Item
 import com.koraspond.washershub.Utils.clickInterfaceVendor
 import com.koraspond.washershub.databinding.HomeMenuRcvItemBinding
 
 class HomeMenuAdapter(
     var context: Context,
-    var list: ArrayList<Data>,
+    var list: ArrayList<Item>,
     var inter: clickInterfaceVendor,
     var userLat: Double,
     var userLng: Double
 ) : RecyclerView.Adapter<HomeMenuAdapter.GroupViewHolder>() {
 
     class GroupViewHolder(var binding: HomeMenuRcvItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(get: Data, inter: clickInterfaceVendor, userLat: Double, userLng: Double) {
+        fun bind(get: Item, inter: clickInterfaceVendor, userLat: Double, userLng: Double) {
             binding.menuName.text = get.shop_name.toString()
             binding.location.text = get.address
             binding.time.text = get.start_time + "-" + get.end_time
