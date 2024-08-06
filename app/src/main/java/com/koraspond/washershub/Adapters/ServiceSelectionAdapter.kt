@@ -11,7 +11,7 @@ import com.koraspond.washershub.Models.vendorDetails.Service
 import com.koraspond.washershub.R
 import com.koraspond.washershub.Utils.clickInterface
 
-class ServiceSelectionAdapter(var context: Context, var servlist: ArrayList<Service>,var clickInterface: clickInterface) :
+class ServiceSelectionAdapter(var context: Context, var servlist: ArrayList<Service>, var clickInterface: clickInterface) :
     RecyclerView.Adapter<ServiceSelectionAdapter.GroupViewHolder>() {
 
     // Variable to keep track of the currently selected position

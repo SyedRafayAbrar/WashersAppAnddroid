@@ -3,9 +3,10 @@ package com.koraspond.washershub.Models.vendorDetails
 data class Vendor(
     val address: String,
     val area: Int,
-    val avatar: Any,
+    val avatar: String,
     val end_time: String,
     val id: Int,
+    val is_closed: Boolean,
     val is_free_mode: Boolean,
     val is_premium: Boolean,
     val lat: Double,

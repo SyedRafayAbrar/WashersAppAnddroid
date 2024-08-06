@@ -9,6 +9,6 @@ data class Service(
     val service_charges: String,
     val service_description: String,
     val service_name: String,
-    val variations: List<Variation>?,
+    val variations: List<Variation>,
     val vendor: Vendor
 )
