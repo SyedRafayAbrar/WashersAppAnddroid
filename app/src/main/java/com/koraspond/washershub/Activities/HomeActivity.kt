@@ -62,23 +62,6 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
         binding.areaSpinner.text = "Nearest Shops"
 
 
-        val headerView = binding.nav.getHeaderView(0)
-        val navHeaderName = headerView.findViewById<TextView>(R.id.name)
-        val navHeaderEmail = headerView.findViewById<TextView>(R.id.email)
-        val navPRofile = headerView.findViewById<CircleImageView>(R.id.profile)
-
-        Glide.with(this@HomeActivity).load(IMAGEURL+UserInfoPreference(this@HomeActivity).getStr("image")).into(navPRofile)
-
-
-        headerView.setOnClickListener {
-            startActivity(Intent(this@HomeActivity,ProfileActivity::class.java))
-
-        }
-
-        // Replace with actual user data
-        navHeaderName.text = UserInfoPreference(this@HomeActivity).getStr("name")
-        navHeaderEmail.text = UserInfoPreference(this@HomeActivity).getStr("email")
-
         binding.nav.setNavigationItemSelectedListener(this@HomeActivity)
         binding.nav.menu.findItem(R.id.home).isChecked = true
 
@@ -135,6 +118,24 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
     @SuppressLint("MissingPermission")
     override fun onResume() {
         super.onResume()
+
+        val headerView = binding.nav.getHeaderView(0)
+        val navHeaderName = headerView.findViewById<TextView>(R.id.name)
+        val navHeaderEmail = headerView.findViewById<TextView>(R.id.email)
+        val navPRofile = headerView.findViewById<CircleImageView>(R.id.profile)
+
+        Glide.with(this@HomeActivity).load(IMAGEURL+UserInfoPreference(this@HomeActivity).getStr("image")).into(navPRofile)
+
+
+        headerView.setOnClickListener {
+            startActivity(Intent(this@HomeActivity,ProfileActivity::class.java))
+
+        }
+
+        // Replace with actual user data
+        navHeaderName.text = UserInfoPreference(this@HomeActivity).getStr("name")
+        navHeaderEmail.text = UserInfoPreference(this@HomeActivity).getStr("email")
+
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 location?.let {

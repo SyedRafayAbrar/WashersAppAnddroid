@@ -80,7 +80,7 @@ lateinit var binding: FragmentLoginBinding
                                 }
                                 else{
                                         userInfoPreference.setStr("role","v")
-
+                                        userInfoPreference.setStr("vname",response.body()!!.data.vendor.shop_name)
                                         userInfoPreference.setStr("vid",response.body()!!.data.vendor.id.toString())
                                         var  intent = Intent(requireContext(),VendorHome::class.java)
                                         startActivity(intent)

@@ -57,6 +57,7 @@ class ProfileActivity : AppCompatActivity() {
         // Initialize user info
         binding.cEt.setText( UserInfoPreference(this).getStr("contact"))
         binding.eEt.text = UserInfoPreference(this).getStr("email")
+        binding.name.text = UserInfoPreference(this).getStr("name")
         Glide.with(this)
             .load(IMAGEURL + UserInfoPreference(this).getStr("image"))
             .placeholder(R.drawable.baseline_person_outline_24)

@@ -13,15 +13,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.android.material.navigation.NavigationView
 import com.koraspond.washershub.Adapters.VendorRecentOrderAdapter
+import com.koraspond.washershub.ProfileActivity
 import com.koraspond.washershub.R
 import com.koraspond.washershub.Repositories.VendorRepostiry
+import com.koraspond.washershub.Utils.StaticClass
 import com.koraspond.washershub.Utils.UserInfoPreference
 import com.koraspond.washershub.VendorServicesList
 import com.koraspond.washershub.ViewModel.VendoApisViewModel
 import com.koraspond.washershub.ViewModel.VendorApisViewModelFactory
 import com.koraspond.washershub.databinding.ActivityVendorHomeBinding
+import de.hdodenhof.circleimageview.CircleImageView
 
 class VendorHome : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityVendorHomeBinding
@@ -39,18 +43,6 @@ class VendorHome : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         adapter = VendorRecentOrderAdapter(1, ordrlist)
         binding.histRcv.adapter = adapter
 
-
-        val headerView = binding.nav.getHeaderView(0)
-        val navHeaderName = headerView.findViewById<TextView>(R.id.name)
-        val navHeaderEmail = headerView.findViewById<TextView>(R.id.email)
-
-
-
-        // Replace with actual user data
-
-
-        navHeaderName.text = UserInfoPreference(this).getStr("name")
-        navHeaderEmail.text = UserInfoPreference(this).getStr("email")
 
 
         var progress = ProgressDialog(this@VendorHome)
@@ -89,6 +81,26 @@ class VendorHome : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
 
     override fun onResume() {
         super.onResume()
+
+        val headerView = binding.nav.getHeaderView(0)
+        val navHeaderName = headerView.findViewById<TextView>(R.id.name)
+        val navHeaderEmail = headerView.findViewById<TextView>(R.id.email)
+        val navPRofile = headerView.findViewById<CircleImageView>(R.id.profile)
+        Glide.with(this@VendorHome).load(StaticClass.IMAGEURL +UserInfoPreference(this@VendorHome).getStr("image")).into(navPRofile)
+
+
+
+        // Replace with actual user data
+
+
+        navHeaderName.text = UserInfoPreference(this).getStr("name")
+        navHeaderEmail.text = UserInfoPreference(this).getStr("email")
+
+
+        headerView.setOnClickListener {
+            startActivity(Intent(this@VendorHome, ProfileActivity::class.java))
+
+        }
         fetchRecentOrder()
     }
 
