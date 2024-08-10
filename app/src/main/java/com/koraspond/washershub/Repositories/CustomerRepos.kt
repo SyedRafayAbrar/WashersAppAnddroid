@@ -1,5 +1,6 @@
 package com.koraspond.washershub.Repositories
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.koraspond.washershub.Models.CreateORder
@@ -44,6 +45,8 @@ class CustomerRepos private constructor() {
             return _userData
         }
 
+
+        Log.d("nbvhvg",cat.toString())
         isLoading.postValue("true")
 
         val call: Call<GetAllVendors> = if (isNearby == 1 && lat != null && lng != null) {
@@ -55,7 +58,7 @@ class CustomerRepos private constructor() {
         call.enqueue(object : Callback<GetAllVendors> {
             override fun onResponse(call: Call<GetAllVendors>, response: Response<GetAllVendors>) {
                 isLoading.postValue("false")
-                if (response.isSuccessful) {
+                if (response.isSuccessful && response.body()!=null) {
                     val allVendors = response.body()!!
                     _userData.postValue(Resource.success(allVendors))
                 } else {

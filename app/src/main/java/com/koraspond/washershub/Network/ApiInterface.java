@@ -17,6 +17,7 @@ import com.koraspond.washershub.Models.loginModel.LoginModel;
 import com.koraspond.washershub.Models.orderDetailModel.OrderDetailModel;
 import com.koraspond.washershub.Models.orderHistory.OrderHistory;
 import com.koraspond.washershub.Models.timeSlotModels.GetTimeSlots;
+import com.koraspond.washershub.Models.updateProfilePic.UpdateProfilePic;
 import com.koraspond.washershub.Models.updateStatus.UpdateStatusModel;
 import com.koraspond.washershub.Models.vendSignup.VendorSignup;
 import com.koraspond.washershub.Models.vendorDetails.VendorDetails;
@@ -27,6 +28,8 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -112,6 +115,23 @@ public interface ApiInterface {
 
     @GET("admin/get_cities")
     Call<GetCities> getAllCities(@Header("Authorization") String token, @Query("country_id")  int country_id);
+
+   @Multipart
+    @POST("upload_image")
+    Call<UpdateProfilePic> updateProfilePic(@Header("Authorization") String token,  @Part  MultipartBody.Part file,
+                                            @Part("name") RequestBody name);
+
+   @FormUrlEncoded
+   @PUT("update_user")
+    Call<UpdateProfilePic> updateProfilePicTwo(@Header("Authorization") String token, @Field("image") String image);
+
+    @FormUrlEncoded
+    @PUT("update_user")
+    Call<UpdateProfilePic> updateContact(@Header("Authorization") String token, @Field("contact_number") String contact_number);
+
+
+    @GET("vendor/get_categories")
+    Call<com.koraspond.washershub.Models.getModel.GetCategories> getCategories(@Header("Authorization") String token, @Query("category_id") int category_id);
 
 
 

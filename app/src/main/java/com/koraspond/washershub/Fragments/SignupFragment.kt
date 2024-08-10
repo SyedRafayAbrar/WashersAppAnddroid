@@ -105,6 +105,9 @@ lateinit var binding:FragmentSignupBinding
                                                         userInfoPreference.setStr("name",response.body()!!.data.user_name)
                                                         userInfoPreference.setStr("email",response.body()!!.data.email)
                                                         userInfoPreference.setStr("token",response.body()!!.data.token)
+//                                                        userInfoPreference.setStr("contact",response.body()!!.data.user_info.contact_number)
+//                                                        userInfoPreference.setStr("image",response.body()!!.data.user_info.image?:"")
+
                                                         userInfoPreference.setStr("role","c")
                                                         var  intent = Intent(requireContext(),
                                                             HomeActivity::class.java)

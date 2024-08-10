@@ -21,18 +21,22 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.navigation.NavigationView
 import com.koraspond.washershub.Adapters.HomeMenuAdapter
 import com.koraspond.washershub.Models.getVendorsModel.Item
+import com.koraspond.washershub.ProfileActivity
 import com.koraspond.washershub.R
 import com.koraspond.washershub.Repositories.CustomerRepos
+import com.koraspond.washershub.Utils.StaticClass.Companion.IMAGEURL
 import com.koraspond.washershub.Utils.UserInfoPreference
 import com.koraspond.washershub.Utils.clickInterfaceVendor
 import com.koraspond.washershub.ViewModel.VendorViewModel
 import com.koraspond.washershub.ViewModel.VendorViewModelFactory
 import com.koraspond.washershub.databinding.ActivityHomeBinding
+import de.hdodenhof.circleimageview.CircleImageView
 
 class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.OnNavigationItemSelectedListener {
     lateinit var binding: ActivityHomeBinding
@@ -46,7 +50,8 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
     lateinit var adapter: HomeMenuAdapter
     var latitude = 0.0
     var longitude = 0.0
-    var selectedAreaId: String? = null // Variable to store the selected area ID
+    var selectedAreaId: String? = null
+    var catID: Int = 1 // Variable to store the selected area ID
     var isNearby = true // Initially set to nearby
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,10 +65,22 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
         val headerView = binding.nav.getHeaderView(0)
         val navHeaderName = headerView.findViewById<TextView>(R.id.name)
         val navHeaderEmail = headerView.findViewById<TextView>(R.id.email)
+        val navPRofile = headerView.findViewById<CircleImageView>(R.id.profile)
+
+        Glide.with(this@HomeActivity).load(IMAGEURL+UserInfoPreference(this@HomeActivity).getStr("image")).into(navPRofile)
+
+
+        headerView.setOnClickListener {
+            startActivity(Intent(this@HomeActivity,ProfileActivity::class.java))
+
+        }
 
         // Replace with actual user data
         navHeaderName.text = UserInfoPreference(this@HomeActivity).getStr("name")
         navHeaderEmail.text = UserInfoPreference(this@HomeActivity).getStr("email")
+
+        binding.nav.setNavigationItemSelectedListener(this@HomeActivity)
+        binding.nav.menu.findItem(R.id.home).isChecked = true
 
         val customerRepos = CustomerRepos.getInstance()
         viewModel = ViewModelProvider(this, VendorViewModelFactory(customerRepos))
@@ -93,7 +110,10 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
 
         binding.catRcv.layoutManager = LinearLayoutManager(this)
         binding.filter.setOnClickListener {
-            startActivity(Intent(this@HomeActivity, CatogariesActivity::class.java))
+           var intent = Intent(this@HomeActivity, CatogariesActivity::class.java)
+
+            intent.putExtra("selectedCatId",catID)
+               startActivityForResult(intent, REQUEST_SELECT_CATEGORY)
         }
 
         setSortSpinner()
@@ -141,9 +161,9 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
 
         if (isNearby) {
             // Fetch nearby vendors using latitude and longitude
-            viewModel.getNearbyVendors(token,1,1,currentPage, latitude, longitude).observe(this, Observer { resource ->
+            viewModel.getNearbyVendors(token,1,catID,currentPage, latitude, longitude).observe(this, Observer { resource ->
                 resource?.let {
-                    if (it.data != null && it.data.data.items != null) {
+                    if (it!=null && it.data != null && it.data.data!=null  && it.data.data.items != null) {
                         list.addAll(it.data.data.items)
                         adapter.notifyDataSetChanged()
                         currentPage++
@@ -158,9 +178,9 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
             })
         } else {
             // Fetch vendors by area
-            viewModel.getVendors(token, selectedAreaId!!.toInt(),1, currentPage).observe(this, Observer { resource ->
+            viewModel.getVendors(token, selectedAreaId!!.toInt(),catID, currentPage).observe(this, Observer { resource ->
                 resource?.let {
-                    if (it.data != null && it.data.data.items != null) {
+                    if (it.data != null && it.data.data!=null  && it.data.data.items != null) {
                         list.addAll(it.data.data.items)
                         adapter.notifyDataSetChanged()
                         currentPage++
@@ -216,8 +236,6 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // binding.areaSpinner.adapter = arrayAdapter
 
-        binding.nav.setNavigationItemSelectedListener(this)
-        binding.nav.menu.findItem(R.id.home).isChecked = true
     }
 
     override fun onClick(pos: Int, distance: Double) {
@@ -228,8 +246,10 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Toast.makeText(this,"yhnn",Toast.LENGTH_SHORT).show()
         when (item.itemId) {
             R.id.history -> {
+                Toast.makeText(this,"yhnn",Toast.LENGTH_SHORT).show()
                 val intent = Intent(this@HomeActivity, HistoryActivity::class.java)
                 startActivity(intent)
                 binding.myDrawerLayout.closeDrawer(Gravity.LEFT)
@@ -242,7 +262,8 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
                 binding.myDrawerLayout.closeDrawer(Gravity.LEFT)
             }
         }
-        return false
+        Toast.makeText(this,"yhnn",Toast.LENGTH_SHORT).show()
+        return true
     }
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -259,6 +280,7 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
 
     companion object {
         private const val REQUEST_CODE_SELECT_AREA = 1
+        private const val REQUEST_SELECT_CATEGORY = 11
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -279,6 +301,21 @@ class HomeActivity : AppCompatActivity(), clickInterfaceVendor, NavigationView.O
             isLastPage = false
             list.clear()
             fetchVendors()
+        }
+
+        if (requestCode == REQUEST_SELECT_CATEGORY && resultCode == RESULT_OK) {
+        if(data?.getIntExtra("catId",1)!=null){
+            catID =data?.getIntExtra("catId",1)!!
+            Toast.makeText(this@HomeActivity,"dhd"+catID,Toast.LENGTH_SHORT).show()
+
+                currentPage = 1
+            isLastPage = false
+            list.clear()
+            fetchVendors()
+
+        }
+
+
         }
     }
 }

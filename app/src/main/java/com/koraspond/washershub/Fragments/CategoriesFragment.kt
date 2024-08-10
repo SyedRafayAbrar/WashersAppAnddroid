@@ -29,7 +29,7 @@ lateinit var recyclerView: RecyclerView
         recyclerView = view.findViewById(R.id.cat_rcv)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = CategoriesFilterAdapter(requireContext())
+       // recyclerView.adapter = CategoriesFilterAdapter(requireContext())
     }
 
 

@@ -31,9 +31,9 @@ class SelectAreaActivity : AppCompatActivity() {
 
         binding.areaRcv.layoutManager = LinearLayoutManager(this)
         list = ArrayList()
-        adapter = ReasAdapter(this@SelectAreaActivity,list) { areaId,areaname ->
+        adapter = ReasAdapter(this@SelectAreaActivity, list) { areaId, areaname ->
             // Handle area selection
-            onAreaSelected(areaId,areaname)
+            onAreaSelected(areaId, areaname)
         }
         binding.areaRcv.adapter = adapter
 
@@ -41,17 +41,17 @@ class SelectAreaActivity : AppCompatActivity() {
         isNearby = intent.getBooleanExtra("isNearby", true)
 
 
-            // Handle 'Nearby' selection
-            binding.gnb.setOnClickListener {
-                setResult(RESULT_OK, Intent().apply {
-                    putExtra("selectedArea", "Nearby")
-                })
-                finish()
-            }
+        // Handle 'Nearby' selection
+        binding.gnb.setOnClickListener {
+            setResult(RESULT_OK, Intent().apply {
+                putExtra("selectedArea", "Nearby")
+            })
+            finish()
+        }
 
 
-            // Fetch and display cities
-            getCities()
+        // Fetch and display cities
+        getCities()
 
     }
 
@@ -60,7 +60,10 @@ class SelectAreaActivity : AppCompatActivity() {
         progress.show()
 
 
-        Api.client.getAllCities("Basic 8db88ff86fb9b0a4f4ff1e204b6ace5c04ad6fbad96617fc558819a2dd5c23fe", 1).enqueue(object : retrofit2.Callback<GetCities> {
+        Api.client.getAllCities(
+            "Basic 8db88ff86fb9b0a4f4ff1e204b6ace5c04ad6fbad96617fc558819a2dd5c23fe",
+            1
+        ).enqueue(object : retrofit2.Callback<GetCities> {
             override fun onResponse(call: Call<GetCities>, response: Response<GetCities>) {
                 progress.dismiss()
                 if (response.isSuccessful) {
@@ -70,7 +73,11 @@ class SelectAreaActivity : AppCompatActivity() {
                         adapter.notifyDataSetChanged()
                     }
                 } else {
-                    Toast.makeText(this@SelectAreaActivity, "Failed to load cities", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        this@SelectAreaActivity,
+                        "Failed to load cities",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
 
@@ -81,7 +88,7 @@ class SelectAreaActivity : AppCompatActivity() {
         })
     }
 
-    private fun onAreaSelected(areaId: String,name:String) {
+    private fun onAreaSelected(areaId: String, name: String) {
         val intent = Intent().apply {
             putExtra("selectedArea", areaId)
             putExtra("name", name)
