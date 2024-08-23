@@ -223,7 +223,8 @@ class VendorDetailsActivity : AppCompatActivity(), clickInterface {
                     binding.servicesRcv.adapter = adapterSer
                     adapterSer.notifyDataSetChanged()
                 } else {
-                    Toast.makeText(this, "data is null", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+
                 }
             } ?: run {
                 Toast.makeText(this, "Resource is null", Toast.LENGTH_SHORT).show()

@@ -2,7 +2,7 @@ package com.koraspond.washershub.Models.vendorDetails
 
 data class Data(
     val address: String,
-    val area: Int,
+    val area: String,
     val avatar: String,
     val average_rating: Double,
     val end_time: String,
